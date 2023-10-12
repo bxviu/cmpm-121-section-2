@@ -32,7 +32,7 @@
 
 .jump
 {
-  animation: jump .5s linear;
+  animation: jump .5s ease-in-out;
 }
 
 @keyframes jump

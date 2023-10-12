@@ -4,16 +4,17 @@ import "./style.css";
 
 const dino = document.getElementById("dino");
 const cactus = document.getElementById("cactus");
+const cactus2 = document.getElementById("cactus2");
 const bird = document.getElementById("bird");
 
 const scoreText = document.getElementById("scoreText");
 let score = 0;
-SetText("Click to Start!");
+setText("Click to Start!");
 
 let isJumping = false;
 let gameOver = true;
 
-document.addEventListener("click", () => jump());
+document.addEventListener("mousedown", () => jump());
 
 setInterval(function () {
   Main();
@@ -22,7 +23,7 @@ setInterval(function () {
 function Main() {
   if (gameOver == false) {
     score = score + 1;
-    SetText("Score: " + score);
+    setText("Score: " + score);
 
     checkGameOver();
   }
@@ -31,11 +32,12 @@ function Main() {
 function jump() {
   if (gameOver === false) {
     if (isJumping == false) {
-      isJumping = true;
-      dino?.classList.add("jump");
-      setTimeout(removeJump, 500);
+        isJumping = true;
+        dino?.classList.add("jump");
+        setTimeout(removeJump, 500);
     }
-  } else {
+  } 
+  else {
     startGame();
   }
 }
@@ -43,7 +45,6 @@ function jump() {
 function removeJump() {
   dino?.classList.remove("jump");
   isJumping = false;
-  //mainLoop = mainLoop //bug fix?
 }
 
 function removeObstacles() {
@@ -87,10 +88,11 @@ function startGame() {
   gameOver = false;
   score = 0;
   cactus?.classList.add("cactusMove");
+  cactus2?.classList.add("cactusMove");
   bird?.classList.add("birdMove");
 }
 
-function SetText(s: string) {
+function setText(s: string) {
   if (scoreText) {
     scoreText.textContent = s;
   }
@@ -98,7 +100,7 @@ function SetText(s: string) {
 
 function endGame() {
   console.log("player died!");
-  SetText("Final Score: " + score + "! Click To Play Again!");
+  setText("Final Score: " + score + "! Click To Play Again!");
   gameOver = true;
 
   //reset player
