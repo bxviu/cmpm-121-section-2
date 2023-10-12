@@ -4,7 +4,6 @@ import "./style.css";
 
 const dino = document.getElementById("dino");
 const cactus = document.getElementById("cactus");
-const cactus2 = document.getElementById("cactus2");
 const bird = document.getElementById("bird");
 
 const scoreText = document.getElementById("scoreText");
@@ -14,7 +13,13 @@ setText("Click to Start!");
 let isJumping = false;
 let gameOver = true;
 
-document.addEventListener("mousedown", () => jump());
+document.addEventListener("mousedown", () => {
+  if (gameOver === true) {
+    startGame();
+  } else if (isJumping == false) {
+    jump();
+  }
+});
 
 setInterval(function () {
   Main();
@@ -30,16 +35,9 @@ function Main() {
 }
 
 function jump() {
-  if (gameOver === false) {
-    if (isJumping == false) {
-        isJumping = true;
-        dino?.classList.add("jump");
-        setTimeout(removeJump, 500);
-    }
-  } 
-  else {
-    startGame();
-  }
+  isJumping = true;
+  dino?.classList.add("jump");
+  setTimeout(removeJump, 500);
 }
 
 function removeJump() {
@@ -88,7 +86,6 @@ function startGame() {
   gameOver = false;
   score = 0;
   cactus?.classList.add("cactusMove");
-  cactus2?.classList.add("cactusMove");
   bird?.classList.add("birdMove");
 }
 
